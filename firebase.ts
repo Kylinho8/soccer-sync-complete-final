@@ -24,3 +24,6 @@ export const initAnalytics = () => {
       const analytics = getAnalytics(app);
       // Optionally do something with analytics here
     });
+  }
+};
+
