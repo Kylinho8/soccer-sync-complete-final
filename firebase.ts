@@ -7,7 +7,7 @@ const firebaseConfig = {
   storageBucket: "soccer-sync-final.appspot.com",
   messagingSenderId: "845228803050",
   appId: "1:845228803050:web:f9fb7ee523616cf115393b",
-  measurementId: "G-Z16F1BVLG1"
+  measurementId: "G-Z16F1BVLG1",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -18,7 +18,6 @@ export const initAnalytics = () => {
   if (typeof window !== "undefined") {
     import("firebase/analytics").then((analyticsModule) => {
       const analytics = analyticsModule.getAnalytics(app);
-      // Optionally do something with analytics here
     });
   }
 };
