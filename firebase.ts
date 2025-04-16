@@ -1,16 +1,26 @@
-// firebase.ts
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+// Don't import analytics directly — we will conditionally do it
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID",
-  measurementId: "YOUR_MEASUREMENT_ID"
+  apiKey: "AIzaSyASTk3K2L1z823PXfytlAA32B6PjYoAJtk",
+  authDomain: "soccer-sync-final.firebaseapp.com",
+  projectId: "soccer-sync-final",
+  storageBucket: "soccer-sync-final.firebasestorage.app",
+  messagingSenderId: "845228030050",
+  appId: "1:845228030050:web:f9fb7ee523616cf115393b",
+  measurementId: "G-Z16F1BVLG1",
 };
 
-export const app = initializeApp(firebaseConfig);
-export const analytics = getAnalytics(app);
+// Initialize Firebase App
+const app = initializeApp(firebaseConfig);
+
+// Export only the app here
+export { app };
+
+// Optionally initialize analytics ONLY on the client
+export const initAnalytics = () => {
+  if (typeof window !== "undefined") {
+    import("firebase/analytics").then(({ getAnalytics }) => {
+      const analytics = getAnalytics(app);
+      // Optionally do something with analytics here
+    });
