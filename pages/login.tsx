@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { initAnalytics } from "../firebase";
+import { initAnalytics } from "../firebase"; // adjust path if needed
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -10,4 +10,3 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
-
