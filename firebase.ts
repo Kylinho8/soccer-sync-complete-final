@@ -21,7 +21,8 @@ export const initAnalytics = () => {
   if (typeof window !== "undefined") {
     import("firebase/analytics").then((analyticsModule) => {
       const analytics = analyticsModule.getAnalytics(app);
-      // You can log something here if needed
+      // Optionally do something with analytics here
     });
   }
 };
+
