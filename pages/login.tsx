@@ -1,12 +1,11 @@
-import { useEffect } from "react";
-import { initAnalytics } from "../firebase"; // adjust path if needed
+import React from "react";
 
-function MyApp({ Component, pageProps }) {
-  useEffect(() => {
-    initAnalytics();
-  }, []);
+const Login = () => {
+  return (
+    <div>
+      <h1>Login Page</h1>
+    </div>
+  );
+};
 
-  return <Component {...pageProps} />;
-}
-
-export default MyApp;
+export default Login;
