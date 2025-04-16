@@ -1,10 +1,12 @@
-import React from "react";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
-export default function HomePage() {
-  return (
-    <div>
-      <h1>Welcome to Soccer Sync</h1>
-      <p>Your all-in-one platform for teams, players, and coaches.</p>
-    </div>
-  );
+export default function Home() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push("/login");
+  }, []);
+
+  return null;
 }
