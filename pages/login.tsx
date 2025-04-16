@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/router";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { app } from "../firebase";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -10,10 +12,20 @@ export default function Login() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    const auth = getAuth();
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      router.push("/dashboard/admin"); // Adjust this based on role later
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      const userDoc = await getDoc(doc(db, "users", user.uid));
+      const role = userDoc.exists() ? userDoc.data().role : null;
+
+      if (role === "admin") router.push("/dashboard/admin");
+      else if (role === "coach") router.push("/dashboard/coach");
+      else if (role === "player") router.push("/dashboard/player");
+      else router.push("/unauthorized");
     } catch (err: any) {
       setError(err.message);
     }
@@ -43,4 +55,5 @@ export default function Login() {
     </div>
   );
 }
+
 
